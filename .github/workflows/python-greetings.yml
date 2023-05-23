@@ -24,6 +24,7 @@ jobs:
     needs: [install-pip-deps]
     steps:
       - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
         with:
           repository: mtararujs/python-greetings
           path: python-greetings
@@ -36,6 +37,7 @@ jobs:
     runs-on: self-hosted
     needs: [deploy-to-dev]
     steps:
+      - uses: actions/checkout@v3.5.2
       - uses: actions/checkout@v3.5.2
         with:
           repository: mtararujs/course-js-api-framework
