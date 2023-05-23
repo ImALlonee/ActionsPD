@@ -1,0 +1,19 @@
+inputs:
+  environment:
+    description: 'Testing environment'
+    default: 'dev'
+runs:
+  using: "composite"
+  steps: 
+    - name: Print testing start
+      working-directory: python-greetings
+      run: echo Testing on ${{ inputs.environment }} has started..
+      shell: cmd
+    - name: Install dependencies
+      working-directory: python-greetings
+      run : npm install
+      shell: cmd
+    - name: Run testing
+      working-directory: python-greetings
+      run : npm run greetings greetings_${{ inputs.environment }}
+      shell: cmd

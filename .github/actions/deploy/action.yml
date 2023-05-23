@@ -1,0 +1,22 @@
+inputs:
+  port:
+    description: 'Specify port for node application to run'
+    default: 7001
+  environment:
+    description: 'Environment for sample node application'
+    default: 'dev'
+runs:
+  using: "composite"
+  steps: 
+    - name: Print output
+      working-directory: python-greetings
+      run: echo Deployment to ${{ inputs.environment }} has started..
+      shell: cmd
+    - name: Delete service
+      working-directory: python-greetings
+      run : pm2 delete greetings-app-<vides_nosaukums> & EXIT /B 0
+      shell: cmd
+    - name: Start service
+      working-directory: python-greetings
+      run : pm2 start app.py --name greetings-app-${{ inputs.environment }} -- --port ${{ inputs.port }}
+      shell: cmd
